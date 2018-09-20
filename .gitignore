@@ -1,0 +1,36 @@
+# Dependency directories
+node_modules
+jspm_packages
+
+# Optional npm cache directory
+.npm
+
+# Optional REPL history
+.node_repl_history
+
+.DS_Store
+node_modules/
+dist/
+npm-debug.log
+www/
+src/fonts
+
+
+
+## if git starts tracking idea file, you can remove it from the VCS with the following command
+## git rm --cached .idea/worksapce.xml
+
+# IntelliJ files for JetBrains IDEs
+# adding both the folder and the xml files in the folder
+# because adding just the folder doesn't always work and then repo go *boom*
+#########################
+.idea/misc.xml
+.idea/modules.xml
+.idea/vcs.xml
+.idea/workspace.xml
+.idea/watcherTasks.xml
+.idea
+*.suo
+*.ntvs*
+*.njsproj
+*.sln
