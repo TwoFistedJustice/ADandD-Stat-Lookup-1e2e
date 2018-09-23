@@ -49,36 +49,19 @@ modifiedStats = modifyStatsForRace(initialStats);
 
 modifiedStats = modifyStatsForAge(modifiedStats);
 	
-console.log("AGE modified stats:");
-console.log(modifiedStats);
+console.log("AGE modified stats:", JSON.stringify(modifiedStats, undefined, 2));
 
 getAdjustments(modifiedStats);
 
-
-
-
 // createCharacterRecord();
-	console.log("str adjusters " );
-	console.log(gameAdjusters.strengthAdjusters);
-	console.log("dex adjusters:");
-	console.log(gameAdjusters.dexterityAdjusters);
+	console.log("str adjusters\n", JSON.stringify(gameAdjusters.strengthAdjusters, undefined, 2));
+	console.log("dex adjusters:\n", JSON.stringify(gameAdjusters.dexterityAdjusters, undefined, 2));
+	console.log("con adjusters:\n", JSON.stringify(gameAdjusters.constitutionAdjusters, undefined, 2));
+	console.log("int adjusters:\n", JSON.stringify(gameAdjusters.intelligenceAdjusters, undefined, 2));
+	console.log("wis adjusters:\n", JSON.stringify(gameAdjusters.wisdomAdjusters, undefined, 2));
+	console.log("cha adjusters:\n", JSON.stringify(gameAdjusters.charismaAdjusters, undefined, 2));
 
-	console.log("con adjusters:");
-	console.log(gameAdjusters.constitutionAdjusters);
-
-	console.log("int adjusters:");
-	console.log(gameAdjusters.intelligenceAdjusters);
-
-	console.log("wis adjusters:");
-	console.log(gameAdjusters.wisdomAdjusters);
-
-	console.log("cha adjusters:");
-	console.log(gameAdjusters.charismaAdjusters);
-
-
-	
-
-    }
+}
 
 
 
