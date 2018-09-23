@@ -1,13 +1,15 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-	
-	<meta charset="utf-8">
-	
-<!-- 	<link rel="stylesheet" href="assets/stylesheets/reset.css">
- -->	<link rel="stylesheet" href="./styles/main.css">
-	<!-- <link rel="stylesheet" href="//maxcdn.bootstrapcdn.com/bootstrap/3.3.1/css/bootstrap.min.css"/> -->
-	<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css" integrity="sha384-BVYiiSIFeK1dGmJRAkycuHAHRg32OmUcww7on3RYdg4Va+PmSTsz/K68vbdEjh4u" crossorigin="anonymous">
+
+    <meta charset="utf-8">
+
+    <!-- 	<link rel="stylesheet" href="assets/stylesheets/reset.css">
+     -->
+    <link rel="stylesheet" href="./styles/main.css">
+    <!-- <link rel="stylesheet" href="//maxcdn.bootstrapcdn.com/bootstrap/3.3.1/css/bootstrap.min.css"/> -->
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css"
+          integrity="sha384-BVYiiSIFeK1dGmJRAkycuHAHRg32OmUcww7on3RYdg4Va+PmSTsz/K68vbdEjh4u" crossorigin="anonymous">
 
     <script src="./generator/makeCharacter.js"></script>
     <!--<script src="./generator/lookupTables.js"></script>-->
@@ -15,125 +17,120 @@
     <script src="./generator/generator_HomePage.js"></script>
 
 
-
-	<title>Character Sheet 0.01</title>
+    <title>Character Sheet 0.01</title>
 </head>
 <body>
 
-<div class = "fluid-container">
-<p class="warning text-primary tex-center">Crude version, writes to console only</p>
-<br><br>
-<p class="warning text-primary tex-center">If Console clears automatically, open console settings: check "preserve log"</p>
+<div class="fluid-container">
+    <p class="warning text-primary tex-center">Crude version, writes to browser console only (press f12 in chrome to
+        view)</p>
+    <br><br>
+    <p class="warning text-primary tex-center">If Console clears automatically, open console settings: check "preserve
+        log"</p>
 
-<form>
-<br><br>
-	<!--<button class = "btn" id="load">LOAD</button>-->
-	<button class = "btn"  id="save">Display Stats in Console</button>
-	<!-- <input type="button" name="load" value="Load" id="load"> -->
-	<!-- <input type="button" name="submit" value="Save" id="save"> -->
-	<br><br>
+    <form>
+        <br><br>
+        <button class="btn" id="save">Display Stats in Console</button>
+        <br><br>
 
-	<div class = "row">
-		<input class = "col-xs-3" type="text" id="firstName" size = "20" placeholder="First Name" value="FirstName">
-				
-		<input  class = "col-xs-3" type="text" id="familyName" size = "20" placeholder="Family Name" value="FamilyName">
-	
-	</div>
-	<br><br>
+        <div class="row">
+            <input class="col-xs-3" type="text" id="firstName" size="20" placeholder="First Name" value="FirstName">
 
+            <input class="col-xs-3" type="text" id="familyName" size="20" placeholder="Family Name" value="FamilyName">
 
-    <div class = "row">
-    	<label><input class = "col-xs-6" type="radio" name="gender" value="male" checked>Male</label>
-    	<label><input class = "col-xs-6" type="radio" name="gender" value="female">Female</label>
-    </div>
+        </div>
+        <br><br>
 
 
-  		<div class = "row">
-  			<label>Character Race</label>
-  				  		<div id="DropDown-Race"> </div>
-  				  		<br>
-  				  		<label>Character Class</label>
-  				  		<div id="DropDown-Class"> </div>
-  		</div>
-	
-		<div class = "row">
-		<label>
-		Age - 
-		<input type="text" id="age" size = "8" placeholder="age in years" value="31">
-	</label>
-	<!-- <br><br> -->
-
-		<label>Character Alignment
-	  		<div id="DropDown-Alignment"> </div>
-	  	</label>
-	  	</div>
-	  <label>
-		Strength
-	</label>
-	<div id="statSelectStrength"></div>
-	<!-- <br> -->
-		<label>
-		Exceptional Strength for Fighters
-		</label>
-
-		<div class = "row">
-			<div class = "col-xs-3" id="statSelectExcStrengthTensPlace"></div>
-			<div class = "col-xs-3" id="statSelectExcStrengthOnesPlace"></div>
-		</div>
+        <div class="row">
+            <label><input class="col-xs-6" type="radio" name="gender" value="male" checked>Male</label>
+            <label><input class="col-xs-6" type="radio" name="gender" value="female">Female</label>
+        </div>
 
 
+        <div class="row">
+            <label>Character Race</label>
+            <div id="DropDown-Race"></div>
+            <br>
+            <label>Character Class</label>
+            <div id="DropDown-Class"></div>
+        </div>
+
+        <div class="row">
+            <label>
+                Age -
+                <input type="text" id="age" size="8" placeholder="age in years" value="31">
+            </label>
+        </div>
+
+        <div class="row">
+            <label>Character Alignment</label>
+            <div id="DropDown-Alignment"></div>
+
+        </div>
 
 
+        <div class="row">
+            <label>
+                Strength
+            </label>
+            <div id="statSelectStrength"></div>
+            <br>
+            <label>
+                Exceptional Strength for Fighters
+            </label>
+        </div>
 
-		<input type = "text" id = "exceptionalStrength" size = "8" placeholder="01-00 %" value="01"><!--  disabled="false"> -->
-	</label>
-	<!-- <br><br> -->
-
-	<label>
-		Dexterity
-	</label>
-		<div id="statSelectDexterity"></div>
-		<!-- <input type="text" id="dexterity" size = "8" placeholder="Dexterity" value="10"> -->
-	<!-- <br> -->
-
-
-
-	<label>
-		Constitution
-	</label>
-		<div id="statSelectConstitution"></div>
-		<!-- <input type = "text" id = "constitution" size = "8" placeholder="Constitution" value="13"> -->
-	
-	<!-- <br> -->
-
-	<label>
-		Intelligence
-	</label>
-		<div id="statSelectIntelligence"></div>
-		 <!--<input type="text" id="intelligence" size = "8" placeholder="Intelligence" value="10">-->
-	<!-- <br> -->
-
-	<label>
-		Wisdom
-	</label>
-		<div id="statSelectWisdom"></div>
-		<!-- <input type="text" id="wisdom" size = "8" placeholder="Wisdom" value="10"> -->
-	<!-- <br> -->
-
-	<label>
-		Charisma
-	</label>
-		<div id="statSelectCharisma"></div>
-		<!-- <input type="text" id="charisma" size = "8" placeholder="Charisma" value="10"> -->
-	<!-- <br> -->
-
-	<label>
-		Comeliness
-	</label>
-		<div id="statSelectComeliness"></div>
+        <div class="row">
+            <div class="exceptionalStrengthDropdown " id="statSelectExcStrengthTensPlace"></div>
+            <div class="exceptionalStrengthDropdown 3" id="statSelectExcStrengthOnesPlace"></div>
+        </div>
 
 
-</form>
+        <div class = "row">
+            <label>
+            Dexterity
+        </label>
+            <div id="statSelectDexterity"></div>
+        </div>
+
+
+        <div class = "row">
+            <label>
+            Constitution
+        </label>
+            <div id="statSelectConstitution"></div>
+        </div>
+
+        <div class = "row">
+            <label>
+            Intelligence
+        </label>
+            <div id="statSelectIntelligence"></div>
+        </div>
+
+        <div class = "row">
+            <label>
+            Wisdom
+        </label>
+            <div id="statSelectWisdom"></div>
+        </div>
+
+        <div class = "row">
+            <label>
+            Charisma
+        </label>
+            <div id="statSelectCharisma"></div>
+        </div>
+
+        <div class = "row">
+            <label>
+            Comeliness
+        </label>
+            <div id="statSelectComeliness"></div>
+        </div>
+
+    </form>
 </div>
 
 </body>

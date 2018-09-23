@@ -16,6 +16,10 @@ Custom Styles
 		    box-sizing: border-box;
 }
 
+body {
+    padding: 30px
+}
+
 label {
   /*margin: 10px;*/
   padding: 20px;
@@ -32,6 +36,14 @@ select {
   padding-left: 20px;
   margin-left: 20px;
   display: block;
+
+}
+
+.exceptionalStrengthDropdown {
+    padding-left: 10px;
+    margin-left: 10px;
+    display: block;
+
 
 }
 
