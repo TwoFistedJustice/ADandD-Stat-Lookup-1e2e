@@ -476,7 +476,7 @@ function getExceptionalStrengthIndex(characterRecord){
 //this prevents the user from entering incorrect data
 //elementID is the string ID of the <div> where the list will go
 //attributeID is the string ID to be set on the list
-//arrayList expects anarray of strings and holds the data used to populate the list (usually PlayerStats)
+//arrayList expects an array of strings and holds the data used to populate the list (usually PlayerStats)
 function generateDropDown(elementID, attributeID, arrayList){
   var div = $(elementID);
   var dropDown = document.createElement("select");
@@ -484,8 +484,11 @@ function generateDropDown(elementID, attributeID, arrayList){
   dropDown.setAttribute("class", "dropDown col-xs-2");
   div.appendChild(dropDown);
   
-  // for(var i=0; i < arrayList.length; i++){
-  for(var i=arrayList.length -1; i > 0; i--){
+     // the for loop counting UP puts the FIRST index entry at the top (i.e. 3 - 18)
+  // for(var i = 0; i < arrayList.length; i++){
+  // the for loop counting DOWN puts the LAST index entry at the top (i.e. 18 - 3)
+  // Many characters will have at least one score of 18, few will ever have a score of 3
+  for(var i = arrayList.length -1; i > -1; i--){
     //creates the options in the drop down list- no limit on length
     var optionValue = document.createElement("option");
     optionValue.setAttribute("value", arrayList[i]);
