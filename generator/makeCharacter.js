@@ -1,85 +1,3 @@
-/*******************************************************************************
- *******************************************************************************
- *******************************************************************************
- **************************************
- ************************
- 
- Advanced Dungeons & Dragons Character Record Generator
- for First Edition AD&D (with a spattering of Second Edition thrown in)
- 
- Advanced Dungeons & Dragons is the intellectual property of Wizards of the Coast
- 
- Wizards of the Coast had nothing to do with the development of this application.
- Though I think they are AWESOME!!!!  <--- A little ass kissing never hurts.
- 
- Application design by Russ Bain. (Ron Fenolio helped)
- 
- Dedicated to the memory of the One and True Dungeon Master, Gary Gygax.
- 
- 
- DOCUMENTATION:
- 
- BASIC PARTS:
- In AD&D sometimes the DM needs to base a ruling on a character's
- initial stats prior to any mofifications for age/race/gender
- So we start with TWO characterRecord objects.
- -- One holds the unmodified stats,
- -- The other holds the modified stats
- 
- Global Variables are:
- - initialStats
- - modifiedStats
- - gameAdjusters
- - modified by local variable called "jar"
- - as in "put this in the jar"
- - doesn't have  fixed form
- - it is written over multiple times and output
- --   to the console as a new object
- 
- 
- PHASES:
- Script is broken up by Phases, where each phase performs a specific set of tasks
- 
- Phase 0
- The user interaction fields are generated dynamically and automatically pass the correct value types.
- 
- Once fields are generated call the functions in the following order:
- 1. tellUserTheyOopsied("reset");
- 2. initialStats = getInitialStats();
- 3. modifiedStats = initialStats;
- 4. modifiedStats = modifyStatsForRace(initialStats);
- 5. modifiedStats = modifyStatsForAge(modifiedStats);
- 6. getAdjustments(modifiedStats);
- 
- 
- 
- Phase 1 -
- -- Instantiates a New CharacterRecord() - which is a constructor that creates an object holding all the stats.
- 
- --- Gets the initial stats as entered by the user and validates the data against rules from the Player's Handbook
- 
- Phase 2 -
- --- Takes the initial stats and modifies them for race and the cumulative effects of age
- 
- Phase 3 -
- --- Uses the modified stats to look up all the game play adjusters like hit and damage adjusters
- and spell levels, system shock, etc.
- 
- Phase 4 -
- --- Displays all the data screen via HTML so the player can copy it to their paper sheet
- 
- Phase 5 -
- --- Generates a printable sheet which the player can use to copy to their paper sheet
- 
- At no time will this generate an entire usable character record sheet.
- There's a reason it's called "pencil n paper"
- Besides, that it's important for player's to know their characters stats
- and most of them won't if they don't copy it by hand
- ************************
- **************************************
- *******************************************************************************
- *******************************************************************************
- *******************************************************************************/
 //Global Variables
 // Include all the URL for the json
 var $ = function(id) {return document.getElementById(id);};
@@ -553,7 +471,6 @@ function getExceptionalStrengthIndex(characterRecord){
 		HTML Generators
 
  */
-
 
 //Generates drop down list on HTML on page load
 //this prevents the user from entering incorrect data
