@@ -25,43 +25,16 @@ for you. Of course if you are a serious gamer, you will do it yourself and not r
 as a crutch. You should be ashamed of yourself you lazy little Halfling. Any Elfen warrior worthy of
 carrying a blade could do it from memory!  
 
+**Some Notes on the Code Structure**
+I wrote this stuff quite a long time before I actually put it on Github. I did it back when I only knew
+Javascript as a sub-language of C and before I knew how to write nice pretty clean code. So while the app
+works as intended, it ain't pretty. It's not so much spaghetti code as it is spaghetti with meat sauce 
+and feta balls all crammed together and then dropped into a pan to make lasagna code. I was gonna
+refactor it, but then the ghost of my father came to me and said "if it ain't broke, don't fix it."
+And ghosts are like 8 hit dice, drain levels, and require magic weapons to hit. So for once, I did
+what my dad told me. Also dad might actually be a lich. If you know a good cleric please send me a
+referral. 
 
-**Overall Goal:**
-  Have an easily understandable (code and interface) working app linked to a cloud database. 
-  The sourcecode will be publicly available on github and must be structured such that anyone with
-  low to intermediate dev skills can deploy and use it on their own domain.
-  
-  The database should be have a free level so that any DM can set up their own.
-  The MVC can be a full blown one like Vue or React or something simpler that I set
-  I set up myself, like a quasi static node server.
-  
-  **Features:**
-  It will NOT have a dice roller. That must be done by the player, using actual dice, as the Deities and Demigdods intended.
-  It should look up all stats and perform all rule checks.
-  It should be able to dump the entire database to a json file on the admin's local machine.
-  It should be able to upload the entire json database dump file to a new database. 
-
-**Stage One:**
-Move it into its own folder and git repo, upstream to github
-
-**Stage Two:**
-Get the lookup data on to Github with a readme.
-The readme should link to Wizards of the Coast, and expressly state that Dnd is their trademark.
-
-It should also explain that this is an amalgam of first and second editions.
-
-
-**Stage Three:**
-Work up a functional model running on a database and a MVC framework.
-
-**Stage Three Goals:**
-  - The db can be SQL or NOSql, as best fits the overall project goal.
-  - It should be able to print a character to screen and paper such that it can be easily
-    copied to a the character record sheet of the user's choice.
-  - Maybe have two options, one that prints it in an easily copyable format, and one that
-    prints it in a usable, if sub-optimal, format to get into the game quickly. Maybe call it
-    NPC format or something like that.
-    
 
 ***Original App Documentation***
 
@@ -137,5 +110,8 @@ Work up a functional model running on a database and a MVC framework.
  There's a reason it's called "pencil n paper"
  Besides, that it's important for player's to know their characters stats
  and most of them won't if they don't copy it by hand
+
+
+
 
 
