@@ -13,9 +13,9 @@ My front end skills are squat. So if you know front end stuff well and want to c
 
 **Basic Deployment**
 Download the zip file. Extract it to wherever you want. Open charSheet.html in a browser.
-Set your stats, and click "save". To view results open your browser console (f12 in chrome).
+Set your stats, and click "Display Stats in Console". To view results open your browser console (f12 in chrome).
 If you don't see anything, open console settings and check the box next to "preserve log".
-Then click save again.
+Then click "Display Stats in Console" again.
 
 **Introduction**
 This app is intended to aid players and Dungeon Masters of Advanced Dungeons and Dragons first 
