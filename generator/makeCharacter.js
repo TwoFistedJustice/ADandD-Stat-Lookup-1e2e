@@ -7,7 +7,7 @@ var initialStats = null;
 
 // first used in Phase 2
 // will be inititalStats modified for race and age
-var modifiedStats = null;  // initialStats modifed for PC age and race
+var modifiedStats = null;  // initialStats modified for PC age and race
 
 //the set of adjusters derived from the ability tables in the Player's Handbook
 //Derived in Phase 3  from the modifiedStats object
@@ -15,7 +15,7 @@ var modifiedStats = null;  // initialStats modifed for PC age and race
 var gameAdjusters = null;
 
 // if more than zero, error message won't do alert.
-// prevents mulitple alerts per save.
+// prevents multiple alerts per save.
 // resets to zero every time the save-button is clicked.
 
 
@@ -71,7 +71,7 @@ var countErrorMessages = function(){
 
 
 //error message to let the user know they made an error
-//the counter prevents mulitple alerts per save because only one is necessary
+//the counter prevents multiple alerts per save because only one is necessary
 //to reset counter to zero pass in the string "reset"
 //this is done every time the save button is clicked
 
@@ -195,7 +195,7 @@ function getInitialStats(){
   
   
   // call the data validation functions
-  // set a bunch of bools
+  // set a bunch of booleans
   // each must be true for the character to be valid
   raceClassRequirementsMet = checkRacialClassRestrictions(initialStats);
   alignmentClassRequirementMet = checkClassAlignmentRestrictions(initialStats);
@@ -588,7 +588,7 @@ function modifyStatsForAge(characterRecord){
 
 
 //TIRED IS STUPID
-//pass in a character record and the cumalitve effects of age on strength
+//pass in a character record and the cumulative effects of age on strength
 // return the character record
 // modifies a pc's strength based on age
 // If pc is a sub-class of fighter, strength can go over 18
@@ -842,7 +842,7 @@ function getCharimsaAdjustments(characterRecord){
 
 
 //getAdjustments() calls the functions that fill in the
-//game adjustMents object
+//game adjustments object
 function getAdjustments(characterRecord){
   var pc = characterRecord;
   
