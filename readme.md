@@ -6,7 +6,7 @@ http://company.wizards.com/
 
 This project is a labor of love and is not affiliated with Wizards of the Coast or any of their partners.
 
-**Dedication**
+**Dedication:**
  Dedicated to the memory of the One and True Dungeon Master, Gary Gygax.
 
 **Contributors:**
