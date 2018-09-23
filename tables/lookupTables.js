@@ -456,13 +456,13 @@ var AgeAbilityModifiers = [
 
 
 /*
-	ABILTITY TABLES
+	ABILITY TABLES
 	Use the pc's stat as the array index. Note that the strength table 
 	has an array at 18 for fighter exceptional strength
 	
  */
 
-//this is used if something modfies strength to above 18
+//this is used if something modifies strength to above 18
 //  	In regards to strength only, Each plus takes strength to the
 //  next category of exceptional strength. Thus: 
 // 											 18 + 1 = 18/01
