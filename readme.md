@@ -1,5 +1,18 @@
 **Advanced Dungeons and Dragons 1e & 2e Character Record Stats Lookups**
 
+**In a Nutshell**
+It does all of your initial character stat look ups and makes sure your rolled stats meet class and race requirements
+for first and second edition Advanced Dungeons and Dragons. You must roll your own dice. No computer can
+simulate RPG dice rolls because magic.
+
+The first and second editions of the game are largely interchangeable. Second edition is really just a
+more clearly defined version of the first edition. The rules are the same. The stats are the same. There
+were some changes, which were just syntactical sugar.  
+ 
+The app collates look ups from first edtion Dungeon Master Guide, Player Handbook, and Unearthed Arcana
+and takes a bit from the  second editon DM's Guide and Player's Handbook wherever it does the same thing
+faster and better. 
+
 **Legal Stuff:**
 Dungeons and Dragons and Advanced Dungeons and Dragons are property of Wizards of the Coast.
 http://company.wizards.com/
@@ -21,7 +34,7 @@ Set your stats, and click "Display Stats in Console". To view results open your 
 If you don't see anything, open console settings and check the box next to "preserve log".
 Then click "Display Stats in Console" again.
 
-**Introduction**
+**Purpose**
 This app is intended to aid players and Dungeon Masters of Advanced Dungeons and Dragons first 
 and second editions to get into their games more quickly and easily. It will not roll dice for you.
 You must roll your own cursed dice. Once the dice are rolled this will update your stats 
