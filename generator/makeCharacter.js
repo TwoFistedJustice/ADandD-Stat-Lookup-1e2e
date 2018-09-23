@@ -19,20 +19,6 @@
  
  DOCUMENTATION:
  
- Really simple version:
- Call createCharacterRecord(),
- which creates two characterRecord objects: initialstats and modifiedStats
- Everything else is pretty autmoated
- So all you should have to do is refactor getInitialStats() to work with your app
- - it shoulnd't even require much work
- - probably best to make it into something that can  be used universally from a calling funtion
- - essentially add one layer between createCharacterRecord() and getInitialStats()
- 
- WHAT YOU NEED TO USE THIS:
- - makeCharacter.js - does the work
- - lookupTables.js - has all the info from the Player's Handbook and DM's Guide in computer readable arrays
- 
- 
  BASIC PARTS:
  In AD&D sometimes the DM needs to base a ruling on a character's
  initial stats prior to any mofifications for age/race/gender
@@ -47,7 +33,7 @@
  - modified by local variable called "jar"
  - as in "put this in the jar"
  - doesn't have  fixed form
- - it is written over multiple times and oupt
+ - it is written over multiple times and output
  --   to the console as a new object
  
  
@@ -115,8 +101,6 @@ var gameAdjusters = null;
 // resets to zero every time the save-button is clicked.
 
 
-var userMessages = [];
-
 
 function createCharacterRecord(){
   //reset counter to zero to prevent mulitple error alerts
@@ -127,13 +111,13 @@ function createCharacterRecord(){
   initialStats = getInitialStats();
   modifiedStats = getInitialStats();
   
-  userMessages.push("initial stats:");
-  userMessages.push(initialStats);
+  console.log("initial stats:");
+  console.log(initialStats);
   //once initial stats are gotten and made permanent
   //                           modify them for race
   
-  userMessages.push("RACE modified stats:");
-  userMessages.push(modifiedStats);
+  console.log("RACE modified stats:");
+  console.log(modifiedStats);
   
   // after initialStats is modified for race and instantiates
   // the modifiedStats object send the modified stats
@@ -141,23 +125,11 @@ function createCharacterRecord(){
   
   modifiedStats = modifyStatsForAge(modifiedStats);
   
-  // createCharacterRecord();
-  userMessages.push("AGE modified stats:");
-  userMessages.push(modifiedStats);
+  createCharacterRecord();
+  console.log("AGE modified stats:");
+  console.log(modifiedStats);
   
   getAdjustments(modifiedStats);
-  
-  printMessages();
-}
-
-
-var printMessages = function(){
-  for(var i =0; i < userMessages.length; i++){
-    console.log(userMessages[i]);
-    
-  }
-  console.log(modifiedStats);
-  console.log(initialStats);
   
 }
 
@@ -197,18 +169,13 @@ function tellUserTheyOopsied(reset){
     //alert the user if there is a problem
     if(counter === 1){
       alert("Something is wrong. Open the console (f12) to see the specific error.");
-      printMessages();
     } //END COUNTER CONDITIONAL
   } //END ELSE
 }//END FUNCTION
 
-
-
 /*
 		Constructors - these return objects, even though they look like void functions
-
  */
-
 
 //Character Record Constructor
 
@@ -245,103 +212,6 @@ function CharacterRecord(firstName, familyName, race, sex, age, charClass, align
 		Basic functions related to the creation of the character
 
  */
-// getInitialStats()
-// - HTML DEPENDENT
-// - creates a new CharacterRecord() called "initialStats"
-// - parses input values to proper types
-// - generates console messages
-// - calls getAgeCategory(initialStats);
-// - returns initialStats
-
-//Get the stats player entered on the HTML form
-//the dataObject param should exactly match a characterRecord object
-
-
-// USE THIS FOR WEB API
-// RENAME IT AND DELETE THE OLD FUNCTION
-function NEWgetInitialStats(dataObject){
-  var initialStats = new CharacterRecord();
-  
-  //each of these must be true to return this object
-  var raceClassRequirementsMet = null;  //set by checkRacialClassRestrictions()
-  var alignmentClassRequirementMet = null;   // set by checkClassAlignmentRestrictions()
-  var classMinimumsMet = null;    // set by checkStatRequirements(, , "class", "min")
-  var raceMinimumsMet = null;		// set by checkStatRequirements(, , "race" "min")
-  var classMaximumsMet = null;	// set by checkStatRequirements(, , "class", "max")
-  var raceMaximumsMet = null;		// set by checkStatRequirements(, , "race" "max")
-  
-  
-  initialStats.firstName = dataObject.firstName;
-  initialStats.familyName = dataObject.familyName;
-  initialStats.race = dataObject.race;
-  initialStats.age = parseInt(dataObject.age);
-  initialStats.sex = dataObject.gender;
-  initialStats.charClass = dataObject.charClass;
-  initialStats.alignment = dataObject.alignment;
-  
-  // rolled stats don't get changed once set
-  // they are for bookkeeping purposes long term, number of allowed resurections and such
-  initialStats.rolledStrength = parseInt(dataObject.strength);
-  initialStats.rolledDexterity = parseInt(dataObject.dexterity);
-  initialStats.rolledConstitution = parseInt(dataObject.constitution);
-  initialStats.rolledIntelligence = parseInt(dataObject.intelligence);
-  initialStats.rolledWisdom = parseInt(dataObject.wisdom);
-  initialStats.rolledCharisma = parseInt(dataObject.charisma);
-  initialStats.rolledComeliness = parseInt(dataObject.comeliness);
-  
-  // these are the modifiable stats
-  initialStats.strength =parseInt(dataObject.strength);
-  initialStats.dexterity = parseInt(dataObject.dexterity);
-  initialStats.constitution = parseInt(dataObject.constitution);
-  initialStats.intelligence= parseInt(dataObject.intelligence);
-  initialStats.wisdom = parseInt(dataObject.wisdom);
-  initialStats.charisma =  parseInt(dataObject.charisma);
-  initialStats.comeliness =  parseInt(dataObject.comeliness);
-  
-  //this is going to need an error handler for null
-  initialStats.excStr = getExceptionalStrength();
-  initialStats.superClass = getSuperclass(initialStats.charClass);
-  
-  // call the data validation functions
-  // set a bunch of bools
-  // each must be true for the character to be valid
-  raceClassRequirementsMet = checkRacialClassRestrictions(initialStats);
-  alignmentClassRequirementMet = checkClassAlignmentRestrictions(initialStats);
-  raceMinimumsMet = checkStatRequirements(initialStats, RaceAbilityMinimums, "race", "min");
-  raceMaximumsMet = checkStatRequirements(initialStats, RaceAbilityMaximums, "race", "max");
-  classMinimumsMet = checkStatRequirements(initialStats, ClassAbilityMinimums, "class", "min");
-  classMaximumsMet = checkStatRequirements(initialStats, ClassAbilityMaximums, "class", "max");
-  
-  var name = initialStats.firstName + " " + initialStats.familyName;
-  
-  if(raceClassRequirementsMet){
-    userMessages.push("A " + initialStats.race + " can be " + initialStats.charClass);
-  }
-  if(alignmentClassRequirementMet){
-    userMessages.push(name + "'s alignment works with " + initialStats.charClass);}
-  
-  if(raceMinimumsMet){
-    userMessages.push(name + " meets minimum ability requirements for " + initialStats.race);}
-  if(raceMaximumsMet){
-    userMessages.push(name + " meets maximum ability requirements for " + initialStats.race);}
-  if(classMinimumsMet){
-    userMessages.push(name + " meets minimum ability requirements for " + initialStats.charClass);}
-  
-  if(classMaximumsMet){
-    userMessages.push(name + " meets maximum ability requirements for " + initialStats.charClass);}
-  
-  
-  initialStats = getAgeCategory(initialStats);
-  //If all initial requirements are met for race and class, proceed.
-  if(raceClassRequirementsMet && raceMinimumsMet && raceMaximumsMet && classMinimumsMet && classMaximumsMet){
-    
-    return initialStats;
-  }
-}
-
-
-
-
 
 // getInitialStats()
 // - HTML DEPENDENT
@@ -365,20 +235,12 @@ function getInitialStats(){
   var classMaximumsMet = null;	// set by checkStatRequirements(, , "class", "max")
   var raceMaximumsMet = null;		// set by checkStatRequirements(, , "race" "max")
   
+  
+  
   for(var i = 0; i < radios.length; i++){
     if(radios[i].checked)
       gender = radios[i].value;
   }
-  
-  
-  /*******
-   * 					VUE VUE VUE VUE VUE VUE VUE VUE
-   *
-   *    THIS WILL NEED TO BE REFACTORED FOR WEB API
-   * 	CHANGE ALL THE INITIALSTAT.WHATEVER GETTERS
-   *  ALL SHOULD HAVE TO DO IS REMOVE THE QUOTES
-   *  ADD IN PARAMS IN CORRECT ORDER TO DECLARATION
-   */
   
   initialStats.firstName = $("firstName").value;
   initialStats.familyName = $("familyName").value;
@@ -389,7 +251,7 @@ function getInitialStats(){
   initialStats.alignment = $("alignment").value;
   
   // rolled stats don't get changed once set
-  // they are for bookkeeping purposes long term, number of allowed resurections and such
+  // they are for bookkeeping purposes long term, number of allowed resurrections and such
   initialStats.rolledStrength = parseInt($("strength").value);
   initialStats.rolledDexterity = parseInt($("dexterity").value);
   initialStats.rolledConstitution = parseInt($("constitution").value);
@@ -412,6 +274,8 @@ function getInitialStats(){
   initialStats.excStr = getExceptionalStrength();
   initialStats.superClass = getSuperclass(initialStats.charClass);
   
+  
+  
   // call the data validation functions
   // set a bunch of bools
   // each must be true for the character to be valid
@@ -425,24 +289,20 @@ function getInitialStats(){
   var name = initialStats.firstName + " " + initialStats.familyName;
   
   if(raceClassRequirementsMet){
-    userMessages.push("A " + initialStats.race + " can be " + initialStats.charClass);
-  }
-  
-  // }
+    console.log("A " + initialStats.race + " can be " + initialStats.charClass);}
   
   if(alignmentClassRequirementMet){
-    userMessages.push(name + "'s alignment works with " + initialStats.charClass);}
+    console.log(name + "'s alignment works with " + initialStats.charClass);}
   
   if(raceMinimumsMet){
-    userMessages.push(name + " meets minimum ability requirements for " + initialStats.race);}
+    console.log(name + " meets minimum ability requirements for " + initialStats.race);}
   if(raceMaximumsMet){
-    userMessages.push(name + " meets maximum ability requirements for " + initialStats.race);}
+    console.log(name + " meets maximum ability requirements for " + initialStats.race);}
   if(classMinimumsMet){
-    userMessages.push(name + " meets minimum ability requirements for " + initialStats.charClass);}
+    console.log(name + " meets minimum ability requirements for " + initialStats.charClass);}
   
   if(classMaximumsMet){
-    userMessages.push(name + " meets maximum ability requirements for " + initialStats.charClass);}
-  
+    console.log(name + " meets maximum ability requirements for " + initialStats.charClass);}
   
   initialStats = getAgeCategory(initialStats);
   //If all initial requirements are met for race and class, proceed.
@@ -452,10 +312,6 @@ function getInitialStats(){
   }
 }
 
-
-
-
-
 /*
 
 			DATA VALIDATION
@@ -464,8 +320,6 @@ function getInitialStats(){
 
 			Note: As long as you use the html generators to make data entry drop downs
 			there is no need to check that the user enters valid types.
-
-
  */
 
 //check if data entered by player meets minimums as specified in Player's Handbook
@@ -475,7 +329,7 @@ function getInitialStats(){
 //
 // arrayRules expects an array of stats (length = 8) where index 0 holds a string, and the rest are numbers
 // that equal strength, dexterity, constitution, intelligence, wisdom, charisma, comeliness
-// and are used to compare player stats versus mininums and maximums as determined by game rules
+// and are used to compare player stats versus minimums and maximums as determined by game rules
 // in that order - just like the 2e character record sheet
 //
 //  classOrRace expects a string: "class" or "race"
@@ -488,7 +342,6 @@ function checkStatRequirements(characterRecord, arrayRules, classOrRace, minOrMa
   //arrayOfStats is compared to arrayRules
   // index 0 holds a null to simplify iteration against class or race arrays which hold a string at index 0
   var arrayOfStats = [null, pc.strength, pc.dexterity, pc.constitution, pc.intelligence, pc.wisdom, pc.charisma, pc.comeliness];
-  
   
   //set requirementBool to false if at least one stat fails to meet minimum requirements
   var requirementBool = true;
@@ -518,13 +371,13 @@ function checkStatRequirements(characterRecord, arrayRules, classOrRace, minOrMa
         // log which stats fail
         if(minMaxBool){
           if(arrayOfStats[j] < arrayRules[i][j]){
-            userMessages.push("\n***\n" + "Character's " + statNames[j] + " is too low for "  + thingToCheck + "\n***\n");
+            console.error("\n***\n" + "Character's " + statNames[j] + " is too low for "  + thingToCheck + "\n***\n");
             requirementBool	 = false;
           } //END MIN STATS CONDITIONAL
         } //END minMaxBool IF
         else{
           if(arrayOfStats[j] > arrayRules[i][j]){
-            userMessages.push("\n***\n" + "Character's " + statNames[j] + " is too high for "  + thingToCheck + "\n***\n");
+            console.error("\n***\n" + "Character's " + statNames[j] + " is too high for "  + thingToCheck + "\n***\n");
             requirementBool	 = false;
           }//END MAX STATS CONDITIONAL
         } //END minMaxBool ELSE
@@ -557,7 +410,7 @@ function checkRacialClassRestrictions(characterRecord){
       }//	END J LOOP
     } //END RACE CONDITIONAL
   } //END I LOOP
-  userMessages.push("\n***\n" + pc.Race + " cannot be " + pc.charClass +
+  console.error("\n***\n" + pc.Race + " cannot be " + pc.charClass +
     " :-/\nChoose either a different race or a different class.\n***\n");
   tellUserTheyOopsied();
   return false;
@@ -588,7 +441,7 @@ function checkClassAlignmentRestrictions(characterRecord){
   } //END I LOOP
 
 //if nothing is true, return false
-  userMessages.push("\n***\n" + pc.charClass + " cannot be " + pc.alignment + ". Choose another alignment.\n***\n");
+  console.error("\n***\n" + pc.charClass + " cannot be " + pc.alignment + ". Choose another alignment.\n***\n");
   tellUserTheyOopsied();
   return requirementBool;
   
@@ -615,11 +468,11 @@ function getAgeCategory(characterRecord){
     if(pc.race === AgeCategories[i][0]){
       //Check to see if the age entered is either too young or too old
       if(pc.age < AgeCategories[i][1][1]){
-        userMessages.push("\n***\n" + name + " is too young to embark on such a dangerous journey.\n***\n");
+        console.error("\n***\n" + name + " is too young to embark on such a dangerous journey.\n***\n");
         tellUserTheyOopsied();
         break;
       } else if(pc.age > AgeCategories[i][5][2]){
-        userMessages.push("\n***\n" + name + " is too old to embark on such a dangerous journey.\n***\n");
+        console.error("\n***\n" + name + " is too old to embark on such a dangerous journey.\n***\n");
         tellUserTheyOopsied();
         break;
       }//END BABY-AGE AND OLD-AGE CONDITIONAL
@@ -642,7 +495,7 @@ function getAgeCategory(characterRecord){
 function getSuperclass(subClass){//characterRecord){
   // var pc = characterRecord;
   var superDuperClass = null;
-  userMessages.push(" sub-class " + subClass);
+  console.warn(" sub-class " + subClass);
   
   for(var i = 0; i < SuperClasses.length; i++){
     for(j = 0; j < SuperClasses[i].length; j++){
@@ -714,12 +567,12 @@ function generateDropDown(elementID, attributeID, arrayList){
   dropDown.setAttribute("class", "dropDown col-xs-2");
   div.appendChild(dropDown);
   
-  for(var i=0; i < arrayList.length; i++){
+  // for(var i=0; i < arrayList.length; i++){
+  for(var i=arrayList.length -1; i > 0; i--){
     //creates the options in the drop down list- no limit on length
     var optionValue = document.createElement("option");
     optionValue.setAttribute("value", arrayList[i]);
     optionValue.innerHTML = arrayList[i];
-    
     dropDown.appendChild(optionValue);
   }
 }
@@ -783,9 +636,7 @@ function modifyStatsForRace(characterRecord){
 //add the cumulative effects of age to the initial stats.
 //this is meant to be done on the initial stats every time the PC ages
 function modifyStatsForAge(characterRecord){
-  
   var pc = characterRecord;
-  // console.log(pc);
   var categoryIndex = null;
   var cumulativeStrengthModifier = 0;
   //if pc has 18 strength call special function
@@ -800,7 +651,7 @@ function modifyStatsForAge(characterRecord){
   } //END I LOOP
   //add up the cumulative effects of age
   for(var j = 0; j <= categoryIndex; j++){
-    // userMessages.push("category: " + AgeAbilityModifiers[j][0]);
+    // console.log("category: " + AgeAbilityModifiers[j][0]);
     //add up all the strength modifiers
     cumulativeStrengthModifier += AgeAbilityModifiers[j][1];
     pc.dexterity += AgeAbilityModifiers[j][2];
@@ -824,7 +675,6 @@ function modifyStatsForAge(characterRecord){
 // otherwise strength can be at most 18
 function modifyStrength_AGE(characterRecord, cumulativeStrengthModifier) {
   var pc = characterRecord;
-  
   var index = getExceptionalStrengthIndex(pc);
   
   for(var i = 0; i < AgeAbilityModifiers.length; i++){
@@ -836,7 +686,7 @@ function modifyStrength_AGE(characterRecord, cumulativeStrengthModifier) {
         if(index >= 6){
           //if index > 6 that means they went above 18/00 strength to 19 or above (this should never actually happen)
           pc.strength += (index - 5);
-          userMessages.push("index = " + index);
+          console.warn("index = " + index);
         } else {
           pc.strength = 18;
           pc.excStr = ExeptionalStrengthCategories[index];
@@ -846,7 +696,7 @@ function modifyStrength_AGE(characterRecord, cumulativeStrengthModifier) {
   }//END I LOOP
 //if pc isn't a sub-class of fighter, disallow strength of greater than 18
   if(pc.superClass != "Warrior"){
-    userMessages.push("super class is " + pc.superClass);
+    console.warn("super class is " + pc.superClass);
     pc.strength += cumulativeStrengthModifier;
     pc.excStr = "";
     // Disallow strength greater than 18
@@ -860,19 +710,17 @@ function modifyStrength_AGE(characterRecord, cumulativeStrengthModifier) {
 } //END FUNCTION
 
 
-
-
 //The most strength can go up is 2 (+1 half orc, +1 mature)
 //half orc limited to 18/99
 //limits are best handled by a separate function that checks and reduces where needed
 //
 //this does nothing for humans
 function modifyStrengthOf18_RACE(characterRecord) {
-  // userMessages.push ("modifyStrengthOf18_AGE()");
+  // console.log ("modifyStrengthOf18_AGE()");
   var pc = characterRecord;
   var excStrIndex = getExceptionalStrengthIndex(pc);
   var raceIndex = null;
-  // userMessages.push("1-- excStrIndex AGE = " + excStrIndex);
+  // console.log("1-- excStrIndex AGE = " + excStrIndex);
   
   for(var i = 0; i < RaceAbilityModifiers.length; i++){
     if(pc.race === RaceAbilityModifiers[i][0]){
@@ -881,7 +729,7 @@ function modifyStrengthOf18_RACE(characterRecord) {
       if(pc.superclass === "Warrior"){
         //add the modifier to the excStrIndex - array[1] because that is strength
         excStrIndex += RaceAbilityModifiers[i][1];
-        userMessages.push("2-- excStrIndex  AGE = " + excStrIndex);
+        console.warn("2-- excStrIndex  AGE = " + excStrIndex);
         if(excStrIndex >= 6){
           //if excStrIndex > 6 that means they went above 18/00 strength to 19 or above (this should never actually happen)
           pc.strength += (excStrIndex - 5);
@@ -923,7 +771,7 @@ function modifyStrengthOf18_AGE(characterRecord) {
         if(index >= 6){
           //if index > 6 that means they went above 18/00 strength to 19 or above (this should never actually happen)
           pc.strength += (index - 5);
-          userMessages.push("index = " + index);
+          console.warn("index = " + index);
         } else {
           pc.strength = 18;
           pc.excStr = ExeptionalStrengthCategories[index];
@@ -941,7 +789,6 @@ function modifyStrengthOf18_AGE(characterRecord) {
 }
 
 
-
 /*******************************************************************************
  *******************************************************************************
  *******************************************************************************
@@ -951,7 +798,7 @@ function modifyStrengthOf18_AGE(characterRecord) {
  
  PHASE 3
  After initial stats are validated
- After a new object is creatde to hold the soon to be modified stats.
+ After a new object is created to hold the soon to be modified stats.
  After stats are modified for race and age
  
  Then added to the new object will be game adjusters based on the modified stats
@@ -964,10 +811,6 @@ function modifyStrengthOf18_AGE(characterRecord) {
  -- charisma
  -- comeliness
  
- 
- CHANGE NEEDED:
- 
- 
  ************************
  **************************************
  *******************************************************************************
@@ -975,11 +818,9 @@ function modifyStrengthOf18_AGE(characterRecord) {
  *******************************************************************************/
 
 
-
-
 function getStrengthAdjustments (characterRecord){
   // function getStrengthAdjustments (characterRecord){
-  userMessages.push("calling getStrengthAdjustments()");
+  console.log("calling getStrengthAdjustments()");
 //The STRENGTH array holds an array at each [18] location for exceptional strength
 //Hold those in separate variables
   var pc = characterRecord;
