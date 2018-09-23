@@ -6,9 +6,13 @@ http://company.wizards.com/
 
 This project is a labor of love and is not affiliated with Wizards of the Coast or any of their partners.
 
+**Dedication**
+ Dedicated to the memory of the One and True Dungeon Master, Gary Gygax.
 
 **Contributors:**
-My front end skills are squat. So if you know front end stuff well and want to contribute, message me. 
+ Application design by Russ Bain. (Ron Fenolio helped)
+ 
+ My front end skills are squat. So if you know front end stuff well and want to contribute, message me. 
 
 
 **Basic Deployment**
@@ -35,22 +39,6 @@ And ghosts are like 8 hit dice, drain levels, and require magic weapons to hit. 
 what my dad told me. Also dad might actually be a lich. If you know a good cleric please send me a
 referral. 
 
-
-***Original App Documentation***
-
- 
- Advanced Dungeons & Dragons Character Record Generator
- for First Edition AD&D (with a spattering of Second Edition thrown in)
- 
- Advanced Dungeons & Dragons is the intellectual property of Wizards of the Coast
- 
- Wizards of the Coast had nothing to do with the development of this application.
- Though I think they are AWESOME!!!!  <--- A little ass kissing never hurts.
- 
- Application design by Russ Bain. (Ron Fenolio helped)
- 
- Dedicated to the memory of the One and True Dungeon Master, Gary Gygax.
- 
  
  **DOCUMENTATION:**
  
