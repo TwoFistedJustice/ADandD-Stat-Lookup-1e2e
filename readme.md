@@ -20,10 +20,10 @@ Then click "Display Stats in Console" again.
 **Introduction**
 This app is intended to aid players and Dungeon Masters of Advanced Dungeons and Dragons first 
 and second editions to get into their games more quickly and easily. It will not roll dice for you.
-You must roll your own cursed dice. Once the dice are rolled this will track and update your stats 
+You must roll your own cursed dice. Once the dice are rolled this will update your stats 
 for you. Of course if you are a serious gamer, you will do it yourself and not rely on the computer
-as a crutch. You should be ashamed of yourself you lazy little Halfling. Any real Elfen warrior 
-would have the charts memorized already!  
+as a crutch. You should be ashamed of yourself you lazy little Halfling. Any Elfen warrior worthy of
+carrying a blade would have the charts memorized already!  
 
 
 **Overall Goal:**
