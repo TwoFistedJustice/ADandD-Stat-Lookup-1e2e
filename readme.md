@@ -27,6 +27,12 @@ This project is a labor of love and is not affiliated with Wizards of the Coast 
  
  My front end skills are squat. So if you know front end stuff well and want to contribute, message me. 
 
+**Forum Threads:**
+
+[Dragonsfoot Forum Thread](https://www.dragonsfoot.org/forums/viewtopic.php?f=1&t=80772)
+
+[The Piazza UK](http://www.thepiazza.org.uk/bb/viewtopic.php?f=86&t=20552)
+
 
 **Basic Deployment**
 Download the zip file. Extract it to wherever you want. Open charSheet.html in a browser.
